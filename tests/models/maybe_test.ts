@@ -21,7 +21,7 @@ const SOME_TESTS = () => {
 
   Deno.test("[Some][forceUnwrap] can get underlying values from a maybe (without error)", () => {
     assertStrictEquals(maybeGetString().forceUnwrap(), MAYBE_STRING);
-    assertStrictEquals(some(MAYBE_NUMBER).forceUnwrap(), MAYBE_NUMBER);
+    assertStrictEquals(maybeGetNumber().forceUnwrap(), MAYBE_NUMBER);
   });
 
   Deno.test("[Some][map] can manipulate value", () => {
@@ -30,7 +30,7 @@ const SOME_TESTS = () => {
       MAYBE_STRING + "👍",
     );
     assertStrictEquals(
-      some(MAYBE_NUMBER).map((n) => n + 100).forceUnwrap(),
+      maybeGetNumber().map((n) => n + 100).forceUnwrap(),
       MAYBE_NUMBER + 100,
     );
   });
