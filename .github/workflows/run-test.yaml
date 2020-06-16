@@ -9,8 +9,8 @@ jobs:
       - name: Setup
         run: |
           sudo apt-get install unzip -y
-          mkdir local/bin
-          curl -fsSL https://deno.land/x/install/install.sh | sudo DENO_INSTALL=local/bin sh
-          ls
+          mkdir bin
+          curl -fsSL https://deno.land/x/install/install.sh | sudo DENO_INSTALL=bin sh
+          ls bin
       - name: Run tests
-        run: local/bin/deno test
+        run: bin/deno test
