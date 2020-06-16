@@ -1,6 +1,6 @@
 import { Maybe, MaybeType } from "./base.ts";
 
-class Some<ValueType> implements Maybe<MaybeType.Some, ValueType> {
+class Some<ValueType> implements Maybe<ValueType> {
   public readonly type = MaybeType.Some;
   constructor(private readonly value: ValueType) {}
 
@@ -13,13 +13,13 @@ class Some<ValueType> implements Maybe<MaybeType.Some, ValueType> {
   }
 
   map<NewValueType>(
-    mapper: (a: ValueType) => NewValueType,
-  ): Some<NewValueType> {
+    mapper: (value: ValueType) => NewValueType,
+  ): Maybe<NewValueType> {
     return new Some(mapper(this.value));
   }
 
   flatMap<NewValueType>(
-    mapper: (a: ValueType) => Maybe<MaybeType, NewValueType>,
+    mapper: (value: ValueType) => Maybe<NewValueType>,
   ) {
     return mapper(this.value);
   }

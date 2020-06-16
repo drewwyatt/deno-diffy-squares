@@ -3,17 +3,16 @@ export enum MaybeType {
   None = "NONE",
 }
 
-export interface Maybe<Type extends MaybeType, ValueType> {
-  readonly type: Type;
-  unwrap: Type extends MaybeType.Some ? () => ValueType : undefined;
-  forceUnwrap(): Type extends MaybeType.Some ? ValueType : never;
+export interface Maybe<ValueType> {
+  forceUnwrap(): ValueType
 
   map<NewValueType>(
-    mapper: (a: ValueType) => NewValueType,
-  ): Maybe<MaybeType, NewValueType>;
+    mapper: (value: ValueType) => NewValueType,
+  ): Maybe<NewValueType>;
+
   flatMap<NewValueType>(
-    mapper: (a: ValueType) => Maybe<MaybeType, NewValueType>,
-  ): Maybe<MaybeType, NewValueType>;
+    mapper: (value: ValueType) => Maybe<NewValueType>,
+  ): Maybe<NewValueType>;
 
   ifSome(callback: (value: ValueType) => unknown): void;
 }

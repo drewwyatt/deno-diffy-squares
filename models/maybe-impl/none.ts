@@ -1,22 +1,21 @@
 import { Maybe, MaybeType } from "./base.ts";
 
-class None<ValueType> implements Maybe<MaybeType.None, ValueType> {
+class None<ValueType> implements Maybe<ValueType> {
   public readonly type = MaybeType.None;
-  unwrap: undefined;
 
   forceUnwrap() {
     throw new TypeError("Cannot unwrap None");
     return null as never;
   }
 
-  map<NewValueType>(_: (a: ValueType) => NewValueType): None<NewValueType> {
-    return this as unknown as None<NewValueType>;
+  map<NewValueType>(_: (value: ValueType) => NewValueType) {
+    return this as unknown as Maybe<NewValueType>;
   }
 
   flatMap<NewValueType>(
-    _: (a: ValueType) => Maybe<MaybeType, NewValueType>,
+    _: (value: ValueType) => Maybe<NewValueType>,
   ) {
-    return this as unknown as Maybe<MaybeType.None, NewValueType>;
+    return this as unknown as Maybe<NewValueType>;
   }
 
   ifSome(_: (v: ValueType) => unknown) {}
