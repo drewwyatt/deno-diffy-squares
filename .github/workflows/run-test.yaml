@@ -11,5 +11,6 @@ jobs:
           sudo apt-get install unzip -y
           mkdir local/bin
           curl -fsSL https://deno.land/x/install/install.sh | sudo DENO_INSTALL=local/bin sh
+          ls
       - name: Run tests
         run: local/bin/deno test
