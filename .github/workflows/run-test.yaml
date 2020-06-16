@@ -9,8 +9,7 @@ jobs:
       - name: Setup
         run: |
           sudo apt-get install unzip -y
-          curl -fsSL https://deno.land/x/install/install.sh | sh
-          export DENO_INSTALL="/home/runner/.deno"
-          export PATH="$DENO_INSTALL/bin:$PATH"
+          mkdir local/bin
+          curl -fsSL https://deno.land/x/install/install.sh | sudo DENO_INSTALL=local/bin sh
       - name: Run tests
-        run: deno test
+        run: local/bin/deno test
