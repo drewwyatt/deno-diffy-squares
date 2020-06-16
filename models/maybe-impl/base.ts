@@ -4,7 +4,7 @@ export enum MaybeType {
 }
 
 export interface Maybe<ValueType> {
-  forceUnwrap(): ValueType
+  forceUnwrap(): ValueType;
 
   map<NewValueType>(
     mapper: (value: ValueType) => NewValueType,
