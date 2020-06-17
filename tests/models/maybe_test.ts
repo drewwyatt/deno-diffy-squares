@@ -1,4 +1,7 @@
-import { assertStrictEquals, assertThrows } from "https://deno.land/std/testing/asserts.ts";
+import {
+  assertStrictEquals,
+  assertThrows,
+} from "https://deno.land/std/testing/asserts.ts";
 import { Maybe, MaybeType, some, none } from "../../models/maybe.ts";
 
 const MAYBE_STRING = "🔥";
