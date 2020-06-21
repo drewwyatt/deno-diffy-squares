@@ -19,6 +19,9 @@ class None<ValueType> implements Maybe<ValueType> {
   }
 
   ifSome(_: (v: ValueType) => unknown) {}
+  ifNone(callback: () => unknown) {
+    callback();
+  }
 }
 
 export default None;

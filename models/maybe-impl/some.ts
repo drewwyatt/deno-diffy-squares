@@ -27,6 +27,7 @@ class Some<ValueType> implements Maybe<ValueType> {
   ifSome(callback: (value: ValueType) => unknown) {
     callback(this.value);
   }
+  ifNone(_: () => unknown) {}
 }
 
 export default Some;

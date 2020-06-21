@@ -2,16 +2,16 @@ import {
   Either,
   isLeft,
   getLeft,
-  getRight,
   right,
   left,
-  Right,
 } from "./either.ts";
+import { Maybe, some, none } from './maybe.ts'
+
 export type Corner = number;
-export type Corners = [Corner, Corner, Corner, Corner];
+export type Corners = readonly [Corner, Corner, Corner, Corner];
 
 type RawArg = string | number;
-type RawInput = RawArg[];
+type RawInput = readonly RawArg[];
 
 const toEither = (arg: RawArg): Either<string, number> =>
   Number.isNaN(Number(arg)) ? left(arg as string) : right(arg as number);
@@ -34,3 +34,10 @@ export function assertValidCorners(
     );
   }
 }
+
+/**
+ * Returns None if all new corners are 0, otherwise Some<Corners>
+ */
+export const from = ([a, b, c, d]: Corners): Maybe<Corners> => [a, b, c, d].every(c => c === 0) ? none : some(
+    [a - b, b - c, c - d, d - a].map(Math.abs) as [number, number, number, number]
+  )

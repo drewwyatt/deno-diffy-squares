@@ -15,4 +15,5 @@ export interface Maybe<ValueType> {
   ): Maybe<NewValueType>;
 
   ifSome(callback: (value: ValueType) => unknown): void;
+  ifNone(callback: () => unknown): void;
 }
