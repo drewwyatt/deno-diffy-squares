@@ -1,0 +1,16 @@
+name: 'Test'
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup
+        run: |
+          sudo apt-get install unzip -y
+          mkdir bin
+          curl -fsSL https://deno.land/x/install/install.sh | sudo DENO_INSTALL=bin sh
+          ls bin
+      - name: Run tests
+        run: bin/deno test
